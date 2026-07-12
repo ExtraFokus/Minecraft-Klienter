@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<<meta name="google-site-verification" content="pJKObjeZoO-hfuZRnmLEbiiHaq-yY3NpgdxVsb9JpMQ" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minecraft Klienter – Guide & Nedladdning</title>
+<style>
+  :root{
+    --green:#5fa830;
+    --dark-green:#3a6b1f;
+    --black:#0d0d0d;
+    --dark:#161616;
+    --darker:#1e1e1e;
+    --white:#f0f0f0;
+    --gray:#9a9a9a;
+    --stone:#2b2b2b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI', Tahoma, sans-serif;
+    background:var(--black);
+    color:var(--white);
+    line-height:1.6;
+  }
+  header{
+    position:fixed;top:0;left:0;right:0;
+    background:rgba(13,13,13,0.93);
+    backdrop-filter:blur(6px);
+    z-index:1000;
+    border-bottom:3px solid var(--green);
+  }
+  nav{
+    max-width:1250px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 22px;
+    gap:14px;
+  }
+  .logo{font-weight:800;font-size:1.3rem;color:var(--green);letter-spacing:1px;white-space:nowrap;}
+  .nav-links{list-style:none;display:flex;gap:20px;flex-wrap:wrap;align-items:center;}
+  .nav-links a{color:var(--white);text-decoration:none;font-size:0.88rem;}
+  .nav-links a:hover{color:var(--green);}
+
+  .nav-tools{display:flex;align-items:center;gap:12px;}
+
+  .lang-switch{position:relative;}
+  .lang-switch select{
+    appearance:none;-webkit-appearance:none;
+    background:var(--stone);
+    color:var(--white);
+    border:1px solid #3a3a3a;
+    border-radius:6px;
+    padding:7px 28px 7px 10px;
+    font-size:0.8rem;
+    cursor:pointer;
+  }
+  .lang-switch::after{
+    content:"▾";
+    position:absolute;right:9px;top:50%;
+    transform:translateY(-50%);
+    color:var(--green);
+    pointer-events:none;
+    font-size:0.7rem;
+  }
+  .lang-switch select:hover{border-color:var(--green);}
+
+  .yt-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    background:#ff0000;
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:0.8rem;
+    padding:7px 12px;
+    border-radius:6px;
+    transition:background .2s, transform .2s;
+    white-space:nowrap;
+  }
+  .yt-btn:hover{background:#d90000;transform:translateY(-1px);}
+  .yt-btn svg{width:16px;height:16px;flex-shrink:0;}
+
+  .hamburger{
+    display:none;
+    background:none;border:none;
+    color:var(--white);
+    font-size:1.5rem;
+    cursor:pointer;
+    line-height:1;
+    padding:4px 6px;
+  }
+
+  .hero{
+    min-height:75vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;
+    background:linear-gradient(180deg,#0d0d0d 0%, #1a2b0f 100%);
+    padding:140px 20px 60px;
+    border-bottom:4px solid var(--green);
+  }
+  .hero h1{
+    font-size:3.2rem;
+    color:var(--green);
+    text-shadow:3px 3px 0 #000;
+    letter-spacing:1px;
+  }
+  .hero p{
+    margin-top:16px;
+    color:var(--gray);
+    font-size:1.1rem;
+    max-width:600px;
+  }
+  .warn-banner{
+    margin-top:24px;
+    background:#3a2a0a;
+    border:1px solid #c79a2b;
+    color:#f5d98a;
+    padding:12px 20px;
+    border-radius:8px;
+    font-size:0.9rem;
+    max-width:650px;
+  }
+
+  section{max-width:1150px;margin:0 auto;padding:80px 22px;}
+  .section-title{font-size:2rem;color:var(--white);margin-bottom:6px;text-align:center;}
+  .section-sub{text-align:center;color:var(--green);letter-spacing:2px;font-size:0.8rem;text-transform:uppercase;margin-bottom:46px;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;}
+
+  .card{
+    background:var(--dark);
+    border:2px solid var(--stone);
+    border-radius:10px;
+    padding:26px;
+    transition:transform .2s, border-color .2s;
+  }
+  .card:hover{transform:translateY(-5px);border-color:var(--green);}
+  .card .top-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+  .recommend-badge{
+    background:var(--green);
+    color:#0d0d0d;
+    font-size:0.7rem;
+    font-weight:700;
+    padding:3px 10px;
+    border-radius:20px;
+    letter-spacing:0.5px;
+  }
+  .rating{
+    margin-top:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .rating .stars{
+    color:var(--green);
+    font-size:1rem;
+    letter-spacing:2px;
+  }
+  .rating .stars .empty{color:#3a3a3a;}
+  .rating .score-text{
+    color:var(--gray);
+    font-size:0.78rem;
+  }
+  .card .icon{font-size:1.8rem;}
+  .card h3{color:var(--green);font-size:1.2rem;}
+  .card .tag{
+    display:inline-block;
+    background:var(--stone);
+    color:var(--gray);
+    font-size:0.7rem;
+    padding:3px 9px;
+    border-radius:6px;
+    margin:2px 4px 2px 0;
+  }
+  .card p{color:var(--gray);font-size:0.93rem;margin-top:8px;}
+  .card .dl-btn{
+    display:inline-block;
+    margin-top:16px;
+    background:var(--green);
+    color:#0d0d0d;
+    font-weight:700;
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:6px;
+    font-size:0.85rem;
+    transition:background .2s;
+    border:none;
+    cursor:pointer;
+  }
+  .card .dl-btn:hover{background:#7cc940;}
+  .card .site-url{
+    display:block;
+    margin-top:8px;
+    color:var(--gray);
+    font-size:0.78rem;
+    word-break:break-all;
+  }
+
+  .steps{
+    background:var(--darker);
+    border:2px solid var(--stone);
+    border-radius:10px;
+    padding:30px;
+    margin-top:20px;
+  }
+  .steps ol{margin-left:20px;color:var(--gray);}
+  .steps li{margin-bottom:10px;}
+  .steps strong{color:var(--white);}
+
+  .table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .compare-table{
+    width:100%;
+    min-width:560px;
+    border-collapse:collapse;
+    margin-top:10px;
+    font-size:0.9rem;
+  }
+  .compare-table th,.compare-table td{
+    border:1px solid var(--stone);
+    padding:12px 14px;
+    text-align:left;
+  }
+  .compare-table th{
+    background:var(--dark-green);
+    color:#fff;
+  }
+  .compare-table tr:nth-child(even){background:var(--darker);}
+  .compare-table tr:hover{background:#22301a;}
+
+  .safety-box{
+    background:#2a1414;
+    border:1px solid #b03a3a;
+    border-radius:10px;
+    padding:26px;
+    color:#f0b8b8;
+    margin-top:20px;
+  }
+  .safety-box h4{color:#ff8a8a;margin-bottom:10px;}
+  .safety-box ul{margin-left:18px;}
+  .safety-box li{margin-bottom:6px;}
+
+  .privacy-box{
+    background:var(--darker);
+    border:2px solid var(--stone);
+    border-radius:10px;
+    padding:26px;
+    color:var(--gray);
+    margin-top:20px;
+    font-size:0.92rem;
+  }
+  .privacy-box h4{color:var(--green);margin-bottom:10px;margin-top:16px;}
+  .privacy-box h4:first-child{margin-top:0;}
+  .privacy-box p{margin-bottom:10px;}
+  .privacy-box ul{margin-left:18px;margin-bottom:10px;}
+  .privacy-box li{margin-bottom:4px;}
+
+  footer{
+    text-align:center;
+    padding:40px 20px 110px;
+    color:var(--gray);
+    font-size:0.85rem;
+    border-top:1px solid var(--stone);
+  }
+  footer .disclaimer{
+    max-width:700px;
+    margin:0 auto 16px;
+    color:var(--gray);
+    font-size:0.8rem;
+    line-height:1.7;
+  }
+  footer .footer-links{
+    margin-top:14px;
+    display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  }
+  footer .footer-links a{color:var(--green);text-decoration:none;font-size:0.8rem;}
+  footer .footer-links a:hover{text-decoration:underline;}
+  footer .yt-btn{margin-top:18px;}
+
+  /* Varningsmodal innan extern länk öppnas */
+  .modal-overlay{
+    display:none;
+    position:fixed;inset:0;
+    background:rgba(0,0,0,0.75);
+    z-index:2000;
+    align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay.active{display:flex;}
+  .modal-box{
+    background:var(--dark);
+    border:2px solid #c79a2b;
+    border-radius:12px;
+    max-width:480px;
+    width:100%;
+    padding:30px;
+    text-align:left;
+    max-height:85vh;
+    overflow-y:auto;
+  }
+  .modal-box h3{
+    color:#f5d98a;
+    font-size:1.2rem;
+    margin-bottom:14px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .modal-box p{
+    color:var(--gray);
+    font-size:0.92rem;
+    margin-bottom:10px;
+  }
+  .modal-box .modal-url{
+    background:var(--black);
+    border:1px solid var(--stone);
+    border-radius:6px;
+    padding:10px 12px;
+    font-size:0.85rem;
+    color:var(--green);
+    word-break:break-all;
+    margin-bottom:18px;
+  }
+  .modal-box .modal-actions{
+    display:flex;gap:10px;flex-wrap:wrap;
+  }
+  .modal-box .btn-go{
+    background:var(--green);
+    color:#0d0d0d;
+    font-weight:700;
+    border:none;
+    padding:10px 18px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:0.85rem;
+  }
+  .modal-box .btn-go:hover{background:#7cc940;}
+  .modal-box .btn-cancel{
+    background:transparent;
+    color:var(--gray);
+    border:1px solid var(--stone);
+    padding:10px 18px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:0.85rem;
+  }
+  .modal-box .btn-cancel:hover{border-color:var(--gray);color:var(--white);}
+
+  /* Cookie / integritetsbanner */
+  .cookie-banner{
+    position:fixed;left:0;right:0;bottom:0;
+    z-index:1500;
+    background:rgba(13,13,13,0.97);
+    border-top:3px solid var(--green);
+    padding:16px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+    text-align:center;
+  }
+  .cookie-banner p{
+    color:var(--gray);
+    font-size:0.85rem;
+    max-width:640px;
+    margin:0;
+  }
+  .cookie-banner .cookie-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .cookie-banner button{
+    border-radius:6px;
+    padding:9px 16px;
+    font-size:0.82rem;
+    font-weight:700;
+    cursor:pointer;
+    border:none;
+  }
+  .cookie-accept{background:var(--green);color:#0d0d0d;}
+  .cookie-accept:hover{background:#7cc940;}
+  .cookie-more{background:transparent;color:var(--gray);border:1px solid var(--stone) !important;}
+  .cookie-more:hover{border-color:var(--gray) !important;color:var(--white);}
+  .cookie-banner.hidden{display:none;}
+
+  /* ===== Responsiv design ===== */
+  @media(max-width:900px){
+    section{padding:60px 20px;}
+    .hero{padding:130px 18px 50px;}
+  }
+
+  @media(max-width:780px){
+    nav{flex-wrap:wrap;padding:12px 16px;}
+    .hamburger{display:block;order:3;}
+    .nav-links{
+      display:none;
+      width:100%;
+      order:5;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:2px;
+      background:var(--darker);
+      border-radius:8px;
+      margin-top:10px;
+      padding:8px 4px;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links li{width:100%;}
+    .nav-links a{display:block;padding:10px 12px;width:100%;border-radius:6px;}
+    .nav-links a:hover{background:var(--stone);}
+    .nav-tools{order:2;margin-left:auto;}
+    .yt-btn span{display:none;}
+    .yt-btn{padding:8px;border-radius:50%;}
+  }
+
+  @media(max-width:600px){
+    .hero h1{font-size:2.1rem;}
+    .hero p{font-size:1rem;}
+    .section-title{font-size:1.5rem;}
+    .card{padding:20px;}
+    .steps,.safety-box,.privacy-box{padding:18px;}
+    .cookie-banner{padding:14px 14px 18px;flex-direction:column;}
+    footer{padding-bottom:150px;}
+  }
+
+  @media(max-width:420px){
+    .logo{font-size:1.05rem;}
+    .lang-switch select{font-size:0.72rem;padding:6px 24px 6px 8px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">⛏ MC-KLIENTER</div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Meny">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#vanilla" data-i18n="nav_vanilla">Vanilla</a></li>
+      <li><a href="#lunar" data-i18n="nav_lunar">Lunar</a></li>
+      <li><a href="#feather" data-i18n="nav_feather">Feather</a></li>
+      <li><a href="#curseforge" data-i18n="nav_curseforge">CurseForge</a></li>
+      <li><a href="#fler" data-i18n="nav_fler">Fler klienter</a></li>
+      <li><a href="#jamfor" data-i18n="nav_jamfor">Jämför</a></li>
+      <li><a href="#sakerhet" data-i18n="nav_sakerhet">Säkerhet</a></li>
+      <li><a href="#integritet" data-i18n="nav_privacy">Integritetspolicy</a></li>
+    </ul>
+    <div class="nav-tools">
+      <div class="lang-switch">
+        <select id="langSelect" aria-label="Byt språk">
+          <option value="sv">🇸🇪 Svenska</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="de">🇩🇪 Deutsch</option>
+          <option value="fr">🇫🇷 Français</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="ru">🇷🇺 Русский</option>
+          <option value="pt">🇵🇹 Português</option>
+          <option value="zh">🇨🇳 中文</option>
+          <option value="ja">🇯🇵 日本語</option>
+          <option value="no">🇳🇴 Norsk</option>
+          <option value="fi">🇫🇮 Suomi</option>
+        </select>
+      </div>
+      <a class="yt-btn" href="https://www.youtube.com/@RealTopSeccret" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.23-1.64-.95-2.36c-.9-.95-1.92-.95-2.38-1C16.86 2.5 12 2.5 12 2.5h-.01s-4.86 0-8.17.34c-.46.05-1.48.05-2.38 1C.72 4.56.5 6.2.5 6.2S.27 8.11.27 10.03v1.83c0 1.92.23 3.83.23 3.83s.23 1.64.95 2.36c.9.94 2.08.91 2.6 1.01 1.9.18 8.05.34 8.05.34s4.86-.01 8.17-.35c.46-.06 1.48-.06 2.38-1 .72-.72.95-2.36.95-2.36s.23-1.91.23-3.83v-1.83c0-1.92-.23-3.83-.23-3.83zM9.75 14.85V7.65l6.5 3.6-6.5 3.6z"/></svg>
+        <span>YouTube</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1 data-i18n="hero_title">Alla Minecraft-klienter</h1>
+  <p data-i18n="hero_desc">Vill du kunna köra mods på PvP-servern? Kolla in några olika klienter här.</p>
+  <div class="warn-banner" data-i18n="hero_warn">
+    ⚠️ Ladda alltid ner klienter från de officiella webbsidorna nedan. Tredjepartssidor sprider ibland omärkta eller skadliga filer under kända klienters namn.
+  </div>
+</section>
+
+<section id="vanilla">
+  <h2 class="section-title" data-i18n="vanilla_title">Officiell Minecraft Launcher (Vanilla)</h2>
+  <p class="section-sub" data-i18n="vanilla_sub">Grunden alla bygger på</p>
+  <div class="grid">
+    <div class="card">
+      <div class="top-row"><span class="icon">🧱</span><h3 data-i18n="vanilla_card_title">Minecraft Launcher</h3></div>
+      <span class="tag" data-i18n="vanilla_tag1">Officiell</span><span class="tag" data-i18n="vanilla_tag2">Gratis köp krävs</span>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score-text" data-i18n="vanilla_rating">5/5 – säkrast, men inga mods</span></div>
+      <p data-i18n="vanilla_desc">Det officiella launchprogrammet från Mojang/Microsoft. Helt ren version utan mods, men det säkraste och enklaste sättet att spela. Krävs ett köpt Minecraft-konto (Microsoft-konto).</p>
+      <a class="dl-btn" href="#" onclick="showWarning('https://www.minecraft.net/download', this); return false;" data-i18n="btn_visit">Besök hemsida</a>
+      <span class="site-url">minecraft.net/download</span>
+    </div>
+  </div>
+</section>
+
+<section id="lunar">
+  <h2 class="section-title" data-i18n="lunar_title">Lunar Client</h2>
+  <p class="section-sub" data-i18n="lunar_sub">Den mest populära PvP/FPS-klienten</p>
+  <div class="grid">
+    <div class="card">
+      <div class="top-row"><span class="icon">🌙</span><h3 data-i18n="lunar_card_title">Lunar Client</h3><span class="recommend-badge" data-i18n="lunar_badge">Bra för PvP</span></div>
+      <span class="tag" data-i18n="lunar_tag1">Gratis</span><span class="tag" data-i18n="lunar_tag2">PvP-fokus</span><span class="tag" data-i18n="lunar_tag3">FPS Boost</span>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score-text" data-i18n="lunar_rating">5/5 – toppval för PvP-servern</span></div>
+      <p data-i18n="lunar_desc1">Lunar Client är ett modpack för alla moderna versioner av Minecraft. Det är gratis att använda och man missar inga funktioner, men man kan stötta utvecklarna genom att köpa kosmetika. Klienten erbjuder över femtio anpassningsbara mods inom allt från PvP till Skyblock, samt inbyggda prestandaförbättringar som ofta nästan dubblar bildfrekvensen.</p>
+      <p style="margin-top:10px;" data-i18n="lunar_desc2">Den är dock en sluten plattform med ett kurerat urval av inbyggda mods, främst inriktad på PvP-förbättringar, och stödjer inte externa mods som Sodium eller Iris. Den fungerar på Windows, Linux och macOS, inklusive Apple Silicon.</p>
+      <a class="dl-btn" href="#" onclick="showWarning('https://www.lunarclient.com/download', this); return false;" data-i18n="btn_visit">Besök hemsida</a>
+      <span class="site-url">lunarclient.com/download</span>
+    </div>
+  </div>
+</section>
+
+<section id="feather">
+  <h2 class="section-title" data-i18n="feather_title">Feather Client</h2>
+  <p class="section-sub" data-i18n="feather_sub">Lättviktig launcher med inbyggda mods</p>
+  <div class="grid">
+    <div class="card">
+      <div class="top-row"><span class="icon">🪶</span><h3 data-i18n="feather_card1_title">Feather (officiell launcher)</h3><span class="recommend-badge" data-i18n="feather_badge">Bra för mods</span></div>
+      <span class="tag" data-i18n="feather_tag1">Gratis</span><span class="tag" data-i18n="feather_tag2">Egna mods</span><span class="tag" data-i18n="feather_tag3">Server-hosting</span>
+      <div class="rating"><span class="stars">★★★★<span class="empty">☆</span></span><span class="score-text" data-i18n="feather_rating">4/5 – flexibel, bra för mods</span></div>
+      <p data-i18n="feather_desc1">Feather innehåller över 40 inbyggda mods som FPS-visning, keystrokes och toggle sprint, och man kan lägga till egna Forge- eller Fabric-mods direkt i launchern. Den har även inbyggd röstchatt och låter dig hosta en Minecraft-server helt gratis direkt från din egen dator, där din IP skyddas via deras proxynätverk.</p>
+      <a class="dl-btn" href="#" onclick="showWarning('https://feathermc.com/', this); return false;" data-i18n="btn_visit">Besök hemsida</a>
+      <span class="site-url">feathermc.com</span>
+    </div>
+    <div class="card">
+      <div class="top-row"><span class="icon">🧩</span><h3 data-i18n="feather_card2_title">Feather – modpack på CurseForge</h3></div>
+      <span class="tag" data-i18n="feather_tag4">Vanilla+</span><span class="tag">Sodium / Iris</span>
+      <div class="rating"><span class="stars">★★★★<span class="empty">☆</span></span><span class="score-text" data-i18n="feather_rating2">4/5 – bra för shaders & FPS</span></div>
+      <p data-i18n="feather_desc2">Det finns även ett separat "Feather"-modpack som är ett lättviktigt Vanilla+-paket för spelare som vill ha lite extra utan att tappa känslan av vanlig Minecraft. Det återskapar och förbättrar OptiFine-upplevelsen med moderna alternativ som Iris för shaders och Sodium för prestanda. Detta är ett annat projekt än Feather-launchern ovan, så blanda inte ihop dem.</p>
+      <a class="dl-btn" href="#" onclick="showWarning('https://www.curseforge.com/minecraft/modpacks/feather-client', this); return false;" data-i18n="btn_visit">Besök hemsida</a>
+      <span class="site-url">curseforge.com/minecraft/modpacks/feather-client</span>
+    </div>
+  </div>
+</section>
+
+<section id="curseforge">
+  <h2 class="section-title" data-i18n="curseforge_title">CurseForge</h2>
+  <p class="section-sub" data-i18n="curseforge_sub">Den största moddatabasen</p>
+  <div class="grid">
+    <div class="card">
+      <div class="top-row"><span class="icon">🔥</span><h3 data-i18n="curseforge_card_title">CurseForge App</h3></div>
+      <span class="tag" data-i18n="curseforge_tag1">Gratis</span><span class="tag" data-i18n="curseforge_tag2">Mods & Modpacks</span><span class="tag" data-i18n="curseforge_tag3">Resurspaket</span>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score-text" data-i18n="curseforge_rating">5/5 – bäst utbud av mods</span></div>
+      <p data-i18n="curseforge_desc">CurseForge är ingen enskild "klient" utan en launcher/app där du kan söka, installera och hantera tusentals mods, modpacks, resurspaket och shaders för Minecraft (Forge, Fabric och NeoForge). Många kända modpack, inklusive Feather-modpacket ovan, distribueras härifrån.</p>
+      <a class="dl-btn" href="#" onclick="showWarning('https://www.curseforge.com/download/app', this); return false;" data-i18n="btn_visit">Besök hemsida</a>
+      <span class="site-url">curseforge.com/download/app</span>
+    </div>
+  </div>
+</section>
+
+<section id="fler">
+  <h2 class="section-title" data-i18n="fler_title">Fler kända klienter & launchers</h2>
+  <p class="section-sub" data-i18n="fler_sub">Alternativ värda att känna till</p>
+  <div class="grid">
+    <div class="card">
+      <div class="top-row"><span class="icon">🛡️</span><h3 data-i18n="badlion_title">Badlion Client</h3></div>
+      <span class="tag" data-i18n="badlion_tag1">PvP</span><span class="tag" data-i18n="badlion_tag2">Anti-cheat</span>
+      <div class="rating"><span class="stars">★★★★<span class="empty">☆</span></span><span class="score-text" data-i18n="badlion_rating">4/5 – bra om servern kräver det</span></div>
+      <p data-i18n="badlion_desc">Liknar Lunar Client med fokus på PvP-prestanda och har egna anti-cheat-system, populär bland competitive-spelare och på vissa nätverk som kräver det.</p>
+      <span class="site-url">badlion.net</span>
+    </div>
+    <div class="card">
+      <div class="top-row"><span class="icon">🎨</span><h3 data-i18n="labymod_title">LabyMod</h3></div>
+      <span class="tag" data-i18n="labymod_tag1">Cosmetics</span><span class="tag" data-i18n="labymod_tag2">Server-mods</span>
+      <div class="rating"><span class="stars">★★★<span class="empty">☆☆</span></span><span class="score-text" data-i18n="labymod_rating">3/5 – mest kosmetik, mindre PvP</span></div>
+      <p data-i18n="labymod_desc">Tysk klient med stort fokus på utseende, eget skin-system, servermods och inbyggd Discord-liknande chatt.</p>
+      <span class="site-url">labymod.net</span>
+    </div>
+    <div class="card">
+      <div class="top-row"><span class="icon">📦</span><h3 data-i18n="prism_title">Prism Launcher</h3></div>
+      <span class="tag" data-i18n="prism_tag1">Öppen källkod</span><span class="tag" data-i18n="prism_tag2">Modhantering</span>
+      <div class="rating"><span class="stars">★★★★<span class="empty">☆</span></span><span class="score-text" data-i18n="prism_rating">4/5 – bäst för tekniska spelare</span></div>
+      <p data-i18n="prism_desc">Lättviktig, anpassningsbar launcher för att hantera flera instanser av Modrinth/CurseForge-modpacks samtidigt. Populär bland tekniska spelare.</p>
+      <span class="site-url">prismlauncher.org</span>
+    </div>
+    <div class="card">
+      <div class="top-row"><span class="icon">🟪</span><h3 data-i18n="modrinth_title">Modrinth App</h3></div>
+      <span class="tag" data-i18n="modrinth_tag1">Öppen källkod</span><span class="tag" data-i18n="modrinth_tag2">Mods & Modpacks</span>
+      <div class="rating"><span class="stars">★★★★<span class="empty">☆</span></span><span class="score-text" data-i18n="modrinth_rating">4/5 – snyggt och öppet alternativ</span></div>
+      <p data-i18n="modrinth_desc">Alternativ till CurseForge för att söka och installera mods/modpacks, ofta uppskattad för sin renare design och öppna plattform.</p>
+      <span class="site-url">modrinth.com/app</span>
+    </div>
+    <div class="card">
+      <div class="top-row"><span class="icon">⚙️</span><h3 data-i18n="modloaders_title">Forge / Fabric / NeoForge</h3></div>
+      <span class="tag" data-i18n="modloaders_tag">Modloaders</span>
+      <p data-i18n="modloaders_desc">Inte klienter i sig, utan "modloaders" som krävs för att installera de allra flesta fristående mods. Lunar, Badlion och Feather har egna inbyggda system, men CurseForge/Modrinth-modpacks bygger oftast på dessa.</p>
+      <span class="site-url">files.minecraftforge.net · fabricmc.net · neoforged.net</span>
+    </div>
+  </div>
+</section>
+
+<section id="jamfor">
+  <h2 class="section-title" data-i18n="jamfor_title">Jämförelse</h2>
+  <p class="section-sub" data-i18n="jamfor_sub">Vilken passar dig?</p>
+  <div class="table-wrap">
+  <table class="compare-table">
+    <tr><th data-i18n="tbl_h1">Klient</th><th data-i18n="tbl_h2">Bäst för</th><th data-i18n="tbl_h3">Externa mods</th><th data-i18n="tbl_h4">Kostnad</th></tr>
+    <tr><td data-i18n="tbl_r1c1">Officiell Launcher</td><td data-i18n="tbl_r1c2">Ren vanilla-upplevelse</td><td data-i18n="tbl_r1c3">Nej</td><td data-i18n="tbl_r1c4">Kräver köpt konto</td></tr>
+    <tr><td data-i18n="tbl_r2c1">Lunar Client</td><td data-i18n="tbl_r2c2">PvP, Hypixel, FPS-boost</td><td data-i18n="tbl_r2c3">Nej (kurerat)</td><td data-i18n="tbl_r2c4">Gratis (kosmetika kan köpas)</td></tr>
+    <tr><td data-i18n="tbl_r3c1">Feather (launcher)</td><td data-i18n="tbl_r3c2">Egna mods, server-hosting</td><td data-i18n="tbl_r3c3">Ja (Forge/Fabric)</td><td data-i18n="tbl_r3c4">Gratis</td></tr>
+    <tr><td data-i18n="tbl_r4c1">CurseForge</td><td data-i18n="tbl_r4c2">Modpacks, shaders, resurspaket</td><td data-i18n="tbl_r4c3">Ja, allt</td><td data-i18n="tbl_r4c4">Gratis</td></tr>
+    <tr><td data-i18n="tbl_r5c1">Badlion</td><td data-i18n="tbl_r5c2">Competitive PvP</td><td data-i18n="tbl_r5c3">Begränsat</td><td data-i18n="tbl_r5c4">Gratis</td></tr>
+    <tr><td data-i18n="tbl_r6c1">Prism / Modrinth App</td><td data-i18n="tbl_r6c2">Flera instanser, öppen källkod</td><td data-i18n="tbl_r6c3">Ja, allt</td><td data-i18n="tbl_r6c4">Gratis</td></tr>
+  </table>
+  </div>
+</section>
+
+<section id="hur">
+  <h2 class="section-title" data-i18n="hur_title">Hur laddar man ner och installerar?</h2>
+  <p class="section-sub" data-i18n="hur_sub">Steg för steg</p>
+  <div class="steps">
+    <ol>
+      <li data-i18n="step1"><strong>Köp och installera officiella Minecraft</strong> via minecraft.net om du inte redan äger spelet — de flesta klienter (Lunar, Feather, Badlion) kräver ett giltigt Microsoft/Minecraft-konto.</li>
+      <li data-i18n="step2"><strong>Gå till klientens officiella webbsida</strong> (länkarna ovan) — undvik nedladdningsknappar på reklamfyllda tredjepartssidor.</li>
+      <li data-i18n="step3"><strong>Ladda ner installationsfilen</strong> för ditt operativsystem (Windows .exe/.msi, macOS .dmg, Linux .AppImage).</li>
+      <li data-i18n="step4"><strong>Kör installationsfilen</strong> och följ guiden. Vissa klienter (Lunar, Feather) installerar sig som en helt egen launcher.</li>
+      <li data-i18n="step5"><strong>Logga in med ditt Microsoft-konto</strong> inuti klienten/launchern.</li>
+      <li data-i18n="step6"><strong>Välj Minecraft-version och mods</strong> i klientens gränssnitt, och tryck Play/Launch.</li>
+      <li data-i18n="step7">Vill du istället bara ha enskilda mods/modpacks: installera <strong>CurseForge-appen</strong> eller <strong>Modrinth App</strong>, sök efter modpacket (t.ex. "Feather"), klicka Install, och starta via deras inbyggda Play-knapp.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="sakerhet">
+  <h2 class="section-title" data-i18n="sakerhet_title">Säkerhetstips</h2>
+  <p class="section-sub" data-i18n="sakerhet_sub">Skydda ditt konto och din dator</p>
+  <div class="safety-box">
+    <h4 data-i18n="safety_heading">⚠️ Var uppmärksam på:</h4>
+    <ul>
+      <li data-i18n="safety1">Sidor som påstår sig vara "Feather" eller "Lunar" men har domäner som inte matchar de officiella (feathermc.com, lunarclient.com).</li>
+      <li data-i18n="safety2">Klienter som lovar "gratis premium-konto" eller cracked Minecraft — ofta kopplat till skadlig kod eller kontostöld.</li>
+      <li data-i18n="safety3">Filer märkta som "ESP hack", "X-ray" eller liknande på modsidor som CurseForge — dessa bryter mot de flesta servrars regler och kan innehålla skadlig kod.</li>
+      <li data-i18n="safety4">Ladda alltid ner via länkar du själv skrivit in eller via en pålitlig sökmotor till den officiella domänen — inte via länkar i Discord-DM eller YouTube-kommentarer.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="integritet">
+  <h2 class="section-title" data-i18n="privacy_title">Integritetspolicy & Cookies</h2>
+  <p class="section-sub" data-i18n="privacy_sub">Hur vi hanterar din data</p>
+  <div class="privacy-box">
+    <h4 data-i18n="privacy_h1">1. Vilken data samlas in?</h4>
+    <p data-i18n="privacy_p1">Den här webbplatsen kan använda cookies och liknande tekniker för att förstå hur besökare använder sidan, till exempel via analysverktyg (t.ex. Google Analytics) och eventuell annonsering. Detta kan innebära insamling av teknisk information såsom IP-adress, enhetstyp, webbläsare och sidor som besökts.</p>
+    <h4 data-i18n="privacy_h2">2. Cookies</h4>
+    <p data-i18n="privacy_p2">Cookies är små textfiler som sparas i din webbläsare. Vi använder dem för att sidan ska fungera korrekt, komma ihåg dina inställningar (t.ex. valt språk) och för att mäta besöksstatistik. Du kan när som helst blockera eller radera cookies i din webbläsares inställningar, men vissa funktioner kan då sluta fungera som avsett.</p>
+    <h4 data-i18n="privacy_h3">3. Google & tredjepartstjänster</h4>
+    <p data-i18n="privacy_p3">Om sidan visar annonser eller använder analysverktyg från Google kan Google samla in och behandla data enligt sin egen integritetspolicy. Genom att fortsätta använda sidan godkänner du att sådana tredjepartstjänster kan sätta cookies i enlighet med gällande lagstiftning (t.ex. GDPR/ePrivacy).</p>
+    <h4 data-i18n="privacy_h4">4. Dina rättigheter</h4>
+    <p data-i18n="privacy_p4">Du har rätt att få information om, begära rättelse av, eller radering av personuppgifter som rör dig, i den mån sådana behandlas. Vi säljer aldrig dina personuppgifter till tredje part.</p>
+    <h4 data-i18n="privacy_h5">5. Externa länkar</h4>
+    <p data-i18n="privacy_p5">Den här sidan länkar till externa webbplatser (t.ex. minecraft.net, lunarclient.com, feathermc.com, curseforge.com). Vi ansvarar inte för dessa sidors integritetspolicy eller hantering av data. Läs alltid respektive webbplats egna villkor innan du lämnar personuppgifter där.</p>
+    <h4 data-i18n="privacy_h6">6. Kontakt</h4>
+    <p data-i18n="privacy_p6">Har du frågor om denna integritetspolicy är du välkommen att kontakta oss via vår YouTube-kanal.</p>
+  </div>
+</section>
+
+<footer>
+  <p class="disclaimer" data-i18n="footer_disclaimer">
+    ⚠️ <strong>Ansvarsfriskrivning:</strong> Den här sidan är endast en informationsguide och länkar enbart vidare till tredjepartssidors officiella webbsidor. Vi hostar, äger eller distribuerar inga klienter, mods eller filer själva, och ansvarar inte för innehåll, säkerhet eller eventuella skador som uppstår på de externa sidor vi länkar till. Kontrollera alltid webbadressen noga innan du laddar ner något, och ladda endast ner filer du själv bedömer som säkra.
+  </p>
+  <span data-i18n="footer_text">Informationssida om kända Minecraft-klienter och launchers. Ladda alltid ner från officiella källor.</span>
+  <div class="footer-links">
+    <a href="#integritet" data-i18n="footer_link_privacy">Integritetspolicy</a>
+    <a href="#sakerhet" data-i18n="footer_link_safety">Säkerhet</a>
+  </div>
+  <a class="yt-btn" href="https://www.youtube.com/@RealTopSeccret" target="_blank" rel="noopener" style="display:inline-flex;">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.23-1.64-.95-2.36c-.9-.95-1.92-.95-2.38-1C16.86 2.5 12 2.5 12 2.5h-.01s-4.86 0-8.17.34c-.46.05-1.48.05-2.38 1C.72 4.56.5 6.2.5 6.2S.27 8.11.27 10.03v1.83c0 1.92.23 3.83.23 3.83s.23 1.64.95 2.36c.9.94 2.08.91 2.6 1.01 1.9.18 8.05.34 8.05.34s4.86-.01 8.17-.35c.46-.06 1.48-.06 2.38-1 .72-.72.95-2.36.95-2.36s.23-1.91.23-3.83v-1.83c0-1.92-.23-3.83-.23-3.83zM9.75 14.85V7.65l6.5 3.6-6.5 3.6z"/></svg>
+    <span data-i18n="footer_yt">Besök vår YouTube-kanal</span>
+  </a>
+</footer>
+
+<div class="modal-overlay" id="warningModal">
+  <div class="modal-box">
+    <h3 data-i18n="modal_title">⚠️ Du lämnar den här sidan</h3>
+    <p data-i18n="modal_desc">Du är på väg till en extern webbsida som vi inte äger eller kontrollerar. Kontrollera alltid själv att adressen ser korrekt och officiell ut innan du laddar ner eller loggar in med något.</p>
+    <div class="modal-url" id="modalUrl"></div>
+    <p style="font-size:0.8rem;" data-i18n="modal_note">Den här sidan tar inget ansvar för innehållet på externa webbsidor.</p>
+    <div class="modal-actions">
+      <button class="btn-go" id="modalGoBtn" data-i18n="modal_go">Fortsätt till sidan</button>
+      <button class="btn-cancel" onclick="closeWarning()" data-i18n="modal_cancel">Avbryt</button>
+    </div>
+  </div>
+</div>
+
+<div class="cookie-banner" id="cookieBanner">
+  <p data-i18n="cookie_text">🍪 Vi använder cookies för att sidan ska fungera och för att komma ihåg ditt valda språk. Genom att klicka "Godkänn" samtycker du till detta. Läs mer i vår <a href="#integritet" style="color:var(--green);" data-i18n="cookie_link">integritetspolicy</a>.</p>
+  <div class="cookie-actions">
+    <button class="cookie-accept" id="cookieAcceptBtn" data-i18n="cookie_accept">Godkänn</button>
+    <button class="cookie-more" onclick="document.getElementById('integritet').scrollIntoView({behavior:'smooth'});" data-i18n="cookie_more">Läs mer</button>
+  </div>
+</div>
+
+<script>
+  function showWarning(url){
+    document.getElementById('modalUrl').textContent = url;
+    document.getElementById('modalGoBtn').onclick = function(){
+      window.open(url, '_blank', 'noopener');
+      closeWarning();
+    };
+    document.getElementById('warningModal').classList.add('active');
+  }
+  function closeWarning(){
+    document.getElementById('warningModal').classList.remove('active');
+  }
+  document.getElementById('warningModal').addEventListener('click', function(e){
+    if(e.target === this) closeWarning();
+  });
+
+  // Hamburger-meny (mobil)
+  var hamburgerBtn = document.getElementById('hamburgerBtn');
+  var navLinks = document.getElementById('navLinks');
+  if (hamburgerBtn && navLinks) {
+    hamburgerBtn.addEventListener('click', function(){
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ navLinks.classList.remove('open'); });
+    });
+  }
+
+  // Cookie-banner
+  var cookieBanner = document.getElementById('cookieBanner');
+  var cookieAcceptBtn = document.getElementById('cookieAcceptBtn');
+  if (cookieBanner && cookieAcceptBtn) {
+    if(localStorage.getItem('mc_cookie_consent') === 'yes'){
+      cookieBanner.classList.add('hidden');
+    }
+    cookieAcceptBtn.addEventListener('click', function(){
+      localStorage.setItem('mc_cookie_consent', 'yes');
+      cookieBanner.classList.add('hidden');
+    });
+  }
+</script>
+
+<script src="translations.js"></script>
+
+<script>
+  // Vi väntar på att hela sidan har laddats in så att rullistan hittas direkt
+  document.addEventListener("DOMContentLoaded", function() {
+    var langSelect = document.getElementById('langSelect');
+
+    if(!langSelect) return;
+
+    function applyTranslations(lang){
+      var dict = TRANSLATIONS[lang] || TRANSLATIONS.sv;
+      document.querySelectorAll('[data-i18n]').forEach(function(el){
+        var key = el.getAttribute('data-i18n');
+        if(dict[key] !== undefined){
+          el.innerHTML = dict[key];
+        }
+      });
+      document.documentElement.lang = lang;
+      document.title = dict.page_title || document.title;
+      langSelect.value = lang;
+      try{ localStorage.setItem('mc_lang', lang); }catch(e){}
+    }
+
+    langSelect.addEventListener('change', function(){
+      applyTranslations(this.value);
+    });
+
+    (function initLang(){
+      var saved = null;
+      try{ saved = localStorage.getItem('mc_lang'); }catch(e){}
+      var browserLang = (navigator.language || 'sv').slice(0,2);
+      var supported = ['sv','en','de','fr','es','ru','pt','zh','ja','no','fi'];
+      var initial = saved || (supported.indexOf(browserLang) !== -1 ? browserLang : 'sv');
+      applyTranslations(initial);
+  })();
+  });
+</script>
+
+</body>
+</html>
